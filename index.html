@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>양재호 메모장</title>
+  <title>재호의 메모장</title>
   <style>
     /* ================================
        공통 폰트 / 박스 설정
@@ -21,28 +21,30 @@
 
       /* 사용자 조절 기본값 */
       --font-size-main: 16px;
-      --text-main: #f5f5f5;
-      --bg-body: #101010;
+      --text-main: #e5f5ff;
+      --bg-body: #020617;
 
-      /* 고정된 팔레트 */
-      --sub-text: #bbbbbb;
-      --card-bg: #181818;
-      --shadow-color: rgba(0, 0, 0, 0.6);
-      --border-color: #303030;
-      --input-bg: #202020;
-      --input-border: #333;
-      --meta-text: #888888;
-      --preview-text: #b0b0b0;
-      --empty-text: #777777;
-      --accent: #4caf50;
-      --accent-hover: #54bb57;
-      --accent-soft: rgba(76, 175, 80, 0.3);
-      --accent-info: #a0e1b3;
-      --current-time: #a0e1b3;
-      --button-secondary-bg: #333333;
-      --button-secondary-hover: #3f3f3f;
+      /* 고정된 팔레트 (다크 기준)*/
+      --sub-text: #a5b4fc;
+      --card-bg: rgba(15, 23, 42, 0.97);
+      --shadow-color: rgba(15, 23, 42, 0.9);
+      --border-color: #1f2937;
+      --input-bg: #020617;
+      --input-border: #1f2937;
+      --meta-text: #64748b;
+      --preview-text: #cbd5f5;
+      --empty-text: #6b7280;
 
-      background: var(--bg-body);
+      --accent: #38bdf8;      /* 메인 포인트 */
+      --accent-2: #22c55e;    /* 그라디언트 보조 컬러 */
+      --accent-hover: #0ea5e9;
+      --accent-soft: rgba(56, 189, 248, 0.25);
+      --accent-info: #a5f3fc;
+      --current-time: #38bdf8;
+      --button-secondary-bg: #0b1220;
+      --button-secondary-hover: #111827;
+
+      background: radial-gradient(circle at top, #0f172a 0, var(--bg-body) 55%);
       color: var(--text-main);
       font-size: var(--font-size-main);
       transition: background 0.25s, color 0.25s, font-size 0.25s;
@@ -50,37 +52,42 @@
 
     /* 다크 모드 */
     body.dark-mode {
-      --card-bg: #181818;
-      --shadow-color: rgba(0, 0, 0, 0.6);
-      --border-color: #303030;
+      --card-bg: rgba(15, 23, 42, 0.97);
+      --shadow-color: rgba(15, 23, 42, 0.9);
+      --border-color: #1f2937;
     }
 
     /* 라이트 모드 */
     body.light-mode {
-      --bg-body: #f5f5f5;
-      --text-main: #222222;
-      --card-bg: #ffffff;
-      --shadow-color: rgba(0, 0, 0, 0.08);
-      --border-color: #dddddd;
+      --bg-body: #e5f3ff;
+      --text-main: #0f172a;
+      --card-bg: rgba(255, 255, 255, 0.95);
+      --shadow-color: rgba(148, 163, 184, 0.5);
+      --border-color: #cbd5e1;
       --input-bg: #ffffff;
-      --input-border: #cccccc;
-      --preview-text: #555555;
-      --empty-text: #999999;
-      --accent: #2e7d32;
-      --accent-hover: #388e3c;
-      --accent-soft: rgba(46, 125, 50, 0.25);
-      --current-time: #2e7d32;
-      --button-secondary-bg: #e0e0e0;
-      --button-secondary-hover: #d5d5d5;
+      --input-border: #cbd5e1;
+      --preview-text: #475569;
+      --empty-text: #94a3b8;
+
+      --accent: #0ea5e9;
+      --accent-2: #22c55e;
+      --accent-hover: #0284c7;
+      --accent-soft: rgba(14, 165, 233, 0.18);
+      --accent-info: #0ea5e9;
+      --current-time: #0ea5e9;
+      --button-secondary-bg: #e2e8f0;
+      --button-secondary-hover: #cbd5e1;
+
+      background: radial-gradient(circle at top, #e0f2fe 0, var(--bg-body) 55%);
     }
 
     h1 {
       margin-top: 0;
-      font-size: calc(var(--font-size-main) * 1.4);
+      font-size: calc(var(--font-size-main) * 1.5);
     }
 
     .sub-text {
-      font-size: calc(var(--font-size-main) * 0.8);
+      font-size: calc(var(--font-size-main) * 0.85);
       color: var(--sub-text);
       margin-bottom: 8px;
     }
@@ -89,14 +96,16 @@
       font-size: calc(var(--font-size-main) * 0.9);
       color: var(--current-time);
       margin-bottom: 12px;
+      text-align: right;
     }
 
     /* 상단 바 */
     .top-bar {
+      max-width: 960px;
+      margin: 0 auto 4px;
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      margin-bottom: 4px;
       gap: 12px;
       flex-wrap: wrap;
     }
@@ -105,17 +114,23 @@
       border: none;
       padding: 7px 14px;
       border-radius: 999px;
-      font-size: calc(var(--font-size-main) * 0.8);
+      font-size: calc(var(--font-size-main) * 0.85);
       cursor: pointer;
       background: var(--button-secondary-bg);
       color: var(--text-main);
+      box-shadow: 0 0 0 1px rgba(148, 163, 184, 0.25);
     }
 
     #themeToggle:hover {
       background: var(--button-secondary-hover);
     }
 
-    /* 스타일 수정 툴바 (중앙 정렬 + 정돈) */
+    /* 스타일 툴바 */
+    .style-toolbar-wrapper {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
     .style-toolbar {
       display: flex;
       flex-wrap: wrap;
@@ -137,7 +152,7 @@
     .style-toolbar select,
     .style-toolbar input[type="color"] {
       padding: 4px 6px;
-      border-radius: 6px;
+      border-radius: 999px;
       border: 1px solid var(--input-border);
       background: var(--input-bg);
       color: var(--text-main);
@@ -146,18 +161,19 @@
 
     #styleSaveBtn {
       border: none;
-      padding: 8px 14px;
+      padding: 8px 16px;
       border-radius: 999px;
       cursor: pointer;
-      background: var(--accent);
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
       color: #ffffff;
       font-size: inherit;
       font-weight: 600;
       margin-top: 4px;
+      box-shadow: 0 8px 20px rgba(15, 118, 110, 0.4);
     }
 
     #styleSaveBtn:hover {
-      background: var(--accent-hover);
+      filter: brightness(1.06);
     }
 
     /* 앱 레이아웃 */
@@ -165,18 +181,20 @@
       max-width: 960px;
       margin: 0 auto;
       background: var(--card-bg);
-      border-radius: 18px;
-      padding: 20px;
-      box-shadow: 0 6px 28px var(--shadow-color);
+      border-radius: 22px;
+      padding: 20px 20px 18px;
+      box-shadow: 0 24px 64px var(--shadow-color);
       display: grid;
       grid-template-columns: 1.2fr 1fr;
       gap: 16px;
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      backdrop-filter: blur(12px);
     }
 
     .form-section, .list-section {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
     }
 
     label {
@@ -190,12 +208,20 @@
     select {
       width: 100%;
       padding: 9px 10px;
-      border-radius: 10px;
+      border-radius: 12px;
       border: 1px solid var(--input-border);
       font-size: var(--font-size-main);
       background: var(--input-bg);
       color: var(--text-main);
       outline: none;
+      transition: border-color 0.18s, box-shadow 0.18s, background 0.18s;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px var(--accent-soft);
     }
 
     textarea {
@@ -203,9 +229,50 @@
       resize: vertical;
     }
 
+    .emoji-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
     .emoji-preview {
       font-size: calc(var(--font-size-main) * 1.4);
       padding: 4px 8px;
+    }
+
+    .template-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: -4px;
+      margin-bottom: 2px;
+    }
+
+    .template-chip {
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      padding: 3px 10px;
+      font-size: 11px;
+      background: rgba(15, 23, 42, 0.4);
+      color: var(--accent-info);
+      cursor: pointer;
+    }
+
+    body.light-mode .template-chip {
+      background: #e0f2fe;
+      color: #0369a1;
+    }
+
+    .template-chip:hover {
+      background: var(--accent-soft);
+    }
+
+    .count-info {
+      font-size: 11px;
+      color: var(--meta-text);
+      text-align: right;
+      margin-top: -4px;
+      margin-bottom: 4px;
     }
 
     .buttons {
@@ -220,11 +287,13 @@
       font-size: calc(var(--font-size-main) * 0.9);
       font-weight: 600;
       cursor: pointer;
+      border: none;
     }
 
     .btn-save {
-      background: var(--accent);
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
       color: white;
+      box-shadow: 0 10px 25px rgba(56, 189, 248, 0.45);
     }
 
     .btn-new {
@@ -233,7 +302,7 @@
     }
 
     .btn-save:hover {
-      background: var(--accent-hover);
+      filter: brightness(1.05);
     }
 
     .btn-new:hover {
@@ -241,23 +310,73 @@
     }
 
     /* 메모 리스트 */
+    .list-header {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--input-border);
+      background: var(--input-bg);
+      color: var(--text-main);
+      font-size: calc(var(--font-size-main) * 0.85);
+      outline: none;
+    }
+
+    .filter-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: calc(var(--font-size-main) * 0.75);
+      color: var(--meta-text);
+      gap: 8px;
+    }
+
+    .filter-chip {
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: transparent;
+      border: 1px solid var(--border-color);
+      font-size: inherit;
+      color: var(--meta-text);
+      cursor: pointer;
+    }
+
+    .filter-chip.active {
+      background: var(--accent-soft);
+      color: var(--accent-info);
+      border-color: var(--accent);
+    }
+
     .note-list {
       list-style: none;
       padding: 0;
-      margin: 0;
+      margin: 4px 0 0;
       max-height: 360px;
       overflow-y: auto;
     }
 
     .note-item {
       background: var(--input-bg);
-      border-radius: 12px;
+      border-radius: 14px;
       padding: 10px 12px;
       margin-bottom: 8px;
-      border: 1px solid var(--border-color);
+      border: 1px solid rgba(148, 163, 184, 0.4);
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 8px;
+      transition: transform 0.1s ease, box-shadow 0.1s ease, border-color 0.15s;
+    }
+
+    .note-item:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.5);
+      border-color: var(--accent-soft);
     }
 
     .note-main {
@@ -292,9 +411,62 @@
       text-overflow: ellipsis;
     }
 
+    .note-meta {
+      font-size: calc(var(--font-size-main) * 0.7);
+      color: var(--meta-text);
+      margin-top: 2px;
+    }
+
+    .note-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      align-items: flex-end;
+      font-size: calc(var(--font-size-main) * 1.1);
+    }
+
+    .icon-btn {
+      background: transparent;
+      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      border: none;
+      cursor: pointer;
+      color: var(--preview-text);
+    }
+
+    .icon-btn:hover {
+      background: rgba(148, 163, 184, 0.18);
+    }
+
+    .icon-btn.pin.active {
+      color: #facc15;
+    }
+
+    .empty-message {
+      font-size: calc(var(--font-size-main) * 0.8);
+      color: var(--empty-text);
+      padding-top: 4px;
+    }
+
     .draft-info {
       color: var(--accent-info);
       font-size: calc(var(--font-size-main) * 0.75);
+    }
+
+    @media (max-width: 800px) {
+      .app {
+        grid-template-columns: 1fr;
+      }
+      .current-time {
+        text-align: left;
+        max-width: 960px;
+        margin: 0 auto 12px;
+      }
     }
   </style>
 </head>
@@ -303,36 +475,38 @@
   <!-- 상단 바 -->
   <div class="top-bar">
     <div>
-      <h1>스타일 커스터마이징 메모장 💪</h1>
-      <div class="sub-text">낮/밤 모드 · 스타일 조절 · 알람 · 자동저장</div>
+      <h1>재호의 메모장 💪</h1>
+      <div class="sub-text">낮/밤 모드 · 스타일 조절 · 알람 · 자동저장 · 핀 · 템플릿</div>
     </div>
     <button id="themeToggle">🌙 밤 모드로</button>
   </div>
 
-  <!-- 가운데 정렬된 스타일 툴바 -->
-  <div class="style-toolbar">
-    <label>
-      글자 크기:
-      <select id="fontSizeSelect">
-        <option value="14px">작게 (14px)</option>
-        <option value="16px" selected>기본 (16px)</option>
-        <option value="18px">조금 크게 (18px)</option>
-        <option value="20px">크게 (20px)</option>
-        <option value="24px">아주 크게 (24px)</option>
-      </select>
-    </label>
+  <div class="style-toolbar-wrapper">
+    <!-- 가운데 정렬된 스타일 툴바 -->
+    <div class="style-toolbar">
+      <label>
+        글자 크기:
+        <select id="fontSizeSelect">
+          <option value="14px">작게 (14px)</option>
+          <option value="16px" selected>기본 (16px)</option>
+          <option value="18px">조금 크게 (18px)</option>
+          <option value="20px">크게 (20px)</option>
+          <option value="24px">아주 크게 (24px)</option>
+        </select>
+      </label>
 
-    <label>
-      글자 색:
-      <input type="color" id="fontColorPicker" value="#f5f5f5" />
-    </label>
+      <label>
+        글자 색:
+        <input type="color" id="fontColorPicker" value="#e5f5ff" />
+      </label>
 
-    <label>
-      배경 색:
-      <input type="color" id="bgColorPicker" value="#101010" />
-    </label>
+      <label>
+        배경 색:
+        <input type="color" id="bgColorPicker" value="#020617" />
+      </label>
 
-    <button id="styleSaveBtn">💾 스타일 저장</button>
+      <button id="styleSaveBtn">💾 스타일 저장</button>
+    </div>
   </div>
 
   <div id="currentTime" class="current-time"></div>
@@ -342,86 +516,165 @@
     <!-- 메모 입력 -->
     <section class="form-section">
       <input type="hidden" id="noteId" />
+
       <label for="title">제목</label>
       <input type="text" id="title" placeholder="오늘의 다짐, 운동 계획, 공부 목표 등을 적어보세요" />
+
+      <div class="template-chips">
+        <button type="button" class="template-chip" data-template="plan">오늘 계획 템플릿</button>
+        <button type="button" class="template-chip" data-template="workout">운동 기록 템플릿</button>
+        <button type="button" class="template-chip" data-template="thanks">감사 일기 템플릿</button>
+      </div>
 
       <label>강인한 이모지</label>
       <div class="emoji-row">
         <select id="emojiSelect">
           <option value="💪">💪 근육 (파이팅)</option>
-          <option value="🔥">🔥 불꽃 (열정)</option>
+          <option value="🔥" selected>🔥 불꽃 (열정)</option>
           <option value="🦁">🦁 사자 (용기)</option>
           <option value="⚡">⚡ 번개 (집중력)</option>
           <option value="🛡️">🛡️ 방패 (버티기)</option>
         </select>
-        <span id="emojiPreview" class="emoji-preview">💪</span>
+        <span id="emojiPreview" class="emoji-preview">🔥</span>
       </div>
 
       <label for="content">내용</label>
-      <textarea id="content"></textarea>
+      <textarea id="content" placeholder="메모 내용을 자유롭게 적어주세요"></textarea>
+      <div id="countInfo" class="count-info">0 글자 · 0 줄</div>
 
-      <label for="alarmAt">알람</label>
+      <label for="alarmAt">알람 (선택)</label>
       <input type="datetime-local" id="alarmAt" />
+      <div style="font-size:12px; color:var(--meta-text);">
+        설정한 시간에 맞춰 알림 창이 한 번 뜹니다. (브라우저가 켜져 있어야 합니다)
+      </div>
 
       <div class="draft-info" id="draftInfo">자동저장 대기 중...</div>
 
       <div class="buttons">
-        <button class="btn-save" id="saveBtn">저장</button>
+        <button class="btn-save" id="saveBtn">저장 (Create / Update)</button>
         <button class="btn-new" id="newBtn">새 메모</button>
       </div>
     </section>
 
     <!-- 메모 리스트 -->
     <section class="list-section">
+      <div class="list-header">
+        <input id="searchInput" class="search-input" placeholder="메모 검색 (제목/내용)" />
+
+        <div class="filter-row">
+          <span id="noteCountText">총 0개 메모</span>
+          <button id="pinnedFilterBtn" class="filter-chip">★ 핀 메모만 보기</button>
+        </div>
+      </div>
+
       <ul id="noteList" class="note-list"></ul>
+      <div id="emptyMessage" class="empty-message">저장된 메모가 없습니다. 첫 메모를 작성해보세요.</div>
     </section>
   </div>
 
   <script>
     // ===== 상수 =====
-    const STORAGE_KEY = "memo_notes";
-    const DRAFT_KEY = "memo_draft";
-    const STYLE_KEY = "memo_style";
-    const THEME_KEY = "memo_theme";
+    const STORAGE_KEY = "memo_notes_v2";
+    const DRAFT_KEY = "memo_draft_v2";
+    const STYLE_KEY = "memo_style_v2";
+    const THEME_KEY = "memo_theme_v2";
 
+    // ===== DOM =====
     const bodyEl = document.body;
 
-    // ===== 시간 표시 =====
     const currentTimeEl = document.getElementById("currentTime");
-    setInterval(() => {
-      currentTimeEl.textContent = new Date().toLocaleString();
-    }, 1000);
 
-    // ===== 스타일 적용 =====
     const fontSizeSelect = document.getElementById("fontSizeSelect");
     const fontColorPicker = document.getElementById("fontColorPicker");
     const bgColorPicker = document.getElementById("bgColorPicker");
     const styleSaveBtn = document.getElementById("styleSaveBtn");
+    const themeToggleBtn = document.getElementById("themeToggle");
 
+    const noteIdInput = document.getElementById("noteId");
+    const titleInput = document.getElementById("title");
+    const contentInput = document.getElementById("content");
+    const emojiSelect = document.getElementById("emojiSelect");
+    const emojiPreview = document.getElementById("emojiPreview");
+    const alarmAtInput = document.getElementById("alarmAt");
+    const draftInfo = document.getElementById("draftInfo");
+    const countInfo = document.getElementById("countInfo");
+
+    const saveBtn = document.getElementById("saveBtn");
+    const newBtn = document.getElementById("newBtn");
+
+    const searchInput = document.getElementById("searchInput");
+    const pinnedFilterBtn = document.getElementById("pinnedFilterBtn");
+    const noteListEl = document.getElementById("noteList");
+    const emptyMessageEl = document.getElementById("emptyMessage");
+    const noteCountText = document.getElementById("noteCountText");
+
+    const templateChips = document.querySelectorAll(".template-chip");
+
+    // ===== 상태 =====
+    let notes = [];
+    let showPinnedOnly = false;
+    let alarmTimer = null;
+    let draftTimer = null;
+
+    // ===== 공통 유틸 =====
+    function nowISO() {
+      return new Date().toISOString();
+    }
+
+    function formatDateTime(iso) {
+      if (!iso) return "";
+      const d = new Date(iso);
+      if (Number.isNaN(d.getTime())) return "";
+      const y = d.getFullYear();
+      const m = String(d.getMonth() + 1).padStart(2, "0");
+      const day = String(d.getDate()).padStart(2, "0");
+      const h = String(d.getHours()).padStart(2, "0");
+      const min = String(d.getMinutes()).padStart(2, "0");
+      return `${y}-${m}-${day} ${h}:${min}`;
+    }
+
+    function relativeTime(iso) {
+      if (!iso) return "";
+      const d = new Date(iso);
+      const diff = Date.now() - d.getTime();
+      if (diff < 0) return "방금";
+      const sec = Math.floor(diff / 1000);
+      const min = Math.floor(sec / 60);
+      const hour = Math.floor(min / 60);
+      const day = Math.floor(hour / 24);
+      if (sec < 60) return "방금 전";
+      if (min < 60) return `${min}분 전`;
+      if (hour < 24) return `${hour}시간 전`;
+      return `${day}일 전`;
+    }
+
+    // ===== 시간 표시 =====
+    setInterval(() => {
+      currentTimeEl.textContent = "현재 시간: " + formatDateTime(nowISO());
+    }, 1000);
+
+    // ===== 스타일 적용 =====
     function applyStyle(fontSize, fontColor, bgColor) {
-      bodyEl.style.setProperty("--font-size-main", fontSize);
-      bodyEl.style.setProperty("--text-main", fontColor);
-      bodyEl.style.setProperty("--bg-body", bgColor);
+      if (fontSize) bodyEl.style.setProperty("--font-size-main", fontSize);
+      if (fontColor) bodyEl.style.setProperty("--text-main", fontColor);
+      if (bgColor) bodyEl.style.setProperty("--bg-body", bgColor);
     }
 
     function loadStyle() {
-      const savedStyle = JSON.parse(localStorage.getItem(STYLE_KEY));
-      if (!savedStyle) return;
-
+      const savedRaw = localStorage.getItem(STYLE_KEY);
+      if (!savedRaw) return;
+      const savedStyle = JSON.parse(savedRaw);
       const { fontSize, fontColor, bgColor } = savedStyle;
       applyStyle(fontSize, fontColor, bgColor);
-
-      // 동기화
-      fontSizeSelect.value = fontSize;
-      fontColorPicker.value = fontColor;
-      bgColorPicker.value = bgColor;
+      if (fontSize) fontSizeSelect.value = fontSize;
+      if (fontColor) fontColorPicker.value = fontColor;
+      if (bgColor) bgColorPicker.value = bgColor;
     }
 
     function saveStyle() {
       const fontSize = fontSizeSelect.value;
       const fontColor = fontColorPicker.value;
       const bgColor = bgColorPicker.value;
-
       applyStyle(fontSize, fontColor, bgColor);
       localStorage.setItem(STYLE_KEY, JSON.stringify({ fontSize, fontColor, bgColor }));
       alert("스타일이 저장되었습니다!");
@@ -429,33 +682,440 @@
 
     styleSaveBtn.addEventListener("click", saveStyle);
     [fontSizeSelect, fontColorPicker, bgColorPicker].forEach(el =>
-      el.addEventListener("input", () => applyStyle(fontSizeSelect.value, fontColorPicker.value, bgColorPicker.value))
+      el.addEventListener("input", () =>
+        applyStyle(fontSizeSelect.value, fontColorPicker.value, bgColorPicker.value)
+      )
     );
 
     // ===== 테마 (낮/밤) =====
-    const themeToggleBtn = document.getElementById("themeToggle");
     function applyTheme(theme) {
       bodyEl.classList.remove("dark-mode", "light-mode");
       bodyEl.classList.add(`${theme}-mode`);
       themeToggleBtn.textContent = theme === "light" ? "🌙 밤 모드로" : "☀️ 낮 모드로";
       localStorage.setItem(THEME_KEY, theme);
     }
+
     themeToggleBtn.addEventListener("click", () => {
       const newTheme = bodyEl.classList.contains("dark-mode") ? "light" : "dark";
       applyTheme(newTheme);
     });
 
     function loadTheme() {
-      const savedTheme = localStorage.getItem(THEME_KEY) || (new Date().getHours() >= 18 ? "dark" : "light");
+      const savedTheme = localStorage.getItem(THEME_KEY) ||
+        (new Date().getHours() >= 18 ? "dark" : "light");
       applyTheme(savedTheme);
     }
 
-    // ===== 나머지 메모 기능 (CRUD, 자동저장 등은 변경 없이 그대로) =====
-    // ... (기존 자동저장, 메모 저장, 알람 기능 생략 없이 그대로 유지)
+    // ===== 메모 저장/불러오기 =====
+    function loadNotes() {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      notes = raw ? JSON.parse(raw) : [];
+    }
+
+    function saveNotes() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(notes));
+    }
+
+    // ===== 글자 수 카운트 =====
+    function updateCountInfo() {
+      const text = contentInput.value || "";
+      const chars = text.length;
+      const lines = text.split(/\r\n|\r|\n/).length;
+      countInfo.textContent = `${chars} 글자 · ${lines} 줄`;
+    }
+
+    contentInput.addEventListener("input", updateCountInfo);
+
+    // ===== 메모 렌더링 =====
+    function renderNotes() {
+      noteListEl.innerHTML = "";
+      const keyword = searchInput.value.trim().toLowerCase();
+
+      let filtered = notes.slice();
+
+      if (showPinnedOnly) {
+        filtered = filtered.filter(n => n.pinned);
+      }
+
+      if (keyword) {
+        filtered = filtered.filter(n =>
+          (n.title || "").toLowerCase().includes(keyword) ||
+          (n.content || "").toLowerCase().includes(keyword)
+        );
+      }
+
+      filtered.sort((a, b) => {
+        if (b.pinned === a.pinned) {
+          return (b.updatedAt || 0) - (a.updatedAt || 0);
+        }
+        return Number(b.pinned) - Number(a.pinned);
+      });
+
+      noteCountText.textContent = `총 ${notes.length}개 메모`;
+
+      if (filtered.length === 0) {
+        emptyMessageEl.style.display = "block";
+        return;
+      }
+      emptyMessageEl.style.display = "none";
+
+      filtered.forEach(note => {
+        const li = document.createElement("li");
+        li.className = "note-item";
+
+        const main = document.createElement("div");
+        main.className = "note-main";
+
+        const emojiSpan = document.createElement("span");
+        emojiSpan.className = "note-emoji";
+        emojiSpan.textContent = note.emoji || "💪";
+
+        const textsDiv = document.createElement("div");
+        textsDiv.className = "note-texts";
+
+        const titleDiv = document.createElement("div");
+        titleDiv.className = "note-title";
+        titleDiv.textContent = note.title || "제목 없음";
+
+        const previewDiv = document.createElement("div");
+        previewDiv.className = "note-preview";
+        const preview = (note.content || "").replace(/\s+/g, " ");
+        previewDiv.textContent = preview.slice(0, 40);
+
+        const metaDiv = document.createElement("div");
+        metaDiv.className = "note-meta";
+        const timeText = note.updatedAt
+          ? `${relativeTime(note.updatedAt)} · ${formatDateTime(note.updatedAt)}`
+          : "";
+        const alarmInfo = note.alarmAt && !note.alarmDone ? " · ⏰ 예정" :
+                          note.alarmAt && note.alarmDone ? " · ⏰ 완료" : "";
+        metaDiv.textContent = timeText + alarmInfo;
+
+        textsDiv.appendChild(titleDiv);
+        textsDiv.appendChild(previewDiv);
+        textsDiv.appendChild(metaDiv);
+
+        main.appendChild(emojiSpan);
+        main.appendChild(textsDiv);
+
+        main.addEventListener("click", () => loadNoteIntoForm(note.id));
+
+        const actionsDiv = document.createElement("div");
+        actionsDiv.className = "note-actions";
+
+        const pinBtn = document.createElement("button");
+        pinBtn.className = "icon-btn pin" + (note.pinned ? " active" : "");
+        pinBtn.innerHTML = "★";
+        pinBtn.title = "핀 고정";
+        pinBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          togglePin(note.id);
+        });
+
+        const deleteBtn = document.createElement("button");
+        deleteBtn.className = "icon-btn delete";
+        deleteBtn.innerHTML = "🗑";
+        deleteBtn.title = "삭제";
+        deleteBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          deleteNote(note.id);
+        });
+
+        actionsDiv.appendChild(pinBtn);
+        actionsDiv.appendChild(deleteBtn);
+
+        li.appendChild(main);
+        li.appendChild(actionsDiv);
+
+        noteListEl.appendChild(li);
+      });
+    }
+
+    // ===== 핀 / 삭제 =====
+    function togglePin(id) {
+      const idx = notes.findIndex(n => n.id === id);
+      if (idx === -1) return;
+      notes[idx].pinned = !notes[idx].pinned;
+      notes[idx].updatedAt = Date.now();
+      saveNotes();
+      renderNotes();
+    }
+
+    function deleteNote(id) {
+      if (!confirm("이 메모를 삭제하시겠습니까?")) return;
+      notes = notes.filter(n => n.id !== id);
+      saveNotes();
+      renderNotes();
+      if (String(id) === noteIdInput.value) {
+        clearForm();
+      }
+    }
+
+    // ===== 폼 채우기 / 초기화 =====
+    function clearForm() {
+      noteIdInput.value = "";
+      titleInput.value = "";
+      contentInput.value = "";
+      emojiSelect.value = "🔥";
+      emojiPreview.textContent = "🔥";
+      alarmAtInput.value = "";
+      draftInfo.textContent = "자동저장 대기 중...";
+      updateCountInfo();
+    }
+
+    function loadNoteIntoForm(id) {
+      const note = notes.find(n => n.id === id);
+      if (!note) return;
+      noteIdInput.value = String(note.id);
+      titleInput.value = note.title || "";
+      contentInput.value = note.content || "";
+      emojiSelect.value = note.emoji || "🔥";
+      emojiPreview.textContent = emojiSelect.value;
+      updateCountInfo();
+      if (note.alarmAt) {
+        const d = new Date(note.alarmAt);
+        if (!Number.isNaN(d.getTime())) {
+          const y = d.getFullYear();
+          const m = String(d.getMonth() + 1).padStart(2, "0");
+          const day = String(d.getDate()).padStart(2, "0");
+          const h = String(d.getHours()).padStart(2, "0");
+          const min = String(d.getMinutes()).padStart(2, "0");
+          alarmAtInput.value = `${y}-${m}-${day}T${h}:${min}`;
+        }
+      } else {
+        alarmAtInput.value = "";
+      }
+      draftInfo.textContent = "기존 메모 편집 중 (자동저장 활성화)";
+    }
+
+    // ===== 메모 저장 / 업데이트 =====
+    function handleSave() {
+      const title = titleInput.value.trim() || "제목 없음";
+      const content = contentInput.value.trim();
+      const emoji = emojiSelect.value || "💪";
+      const alarmValue = alarmAtInput.value;
+
+      if (!content) {
+        alert("메모 내용을 입력해 주세요.");
+        return;
+      }
+
+      let alarmAt = "";
+      let alarmDone = false;
+      if (alarmValue) {
+        const d = new Date(alarmValue);
+        if (!Number.isNaN(d.getTime())) {
+          alarmAt = d.toISOString();
+          if (d <= new Date()) {
+            alarmDone = true;
+          }
+        }
+      }
+
+      const now = Date.now();
+      const idStr = noteIdInput.value;
+      if (idStr) {
+        const id = Number(idStr);
+        const idx = notes.findIndex(n => n.id === id);
+        if (idx !== -1) {
+          const note = notes[idx];
+          note.title = title;
+          note.content = content;
+          note.emoji = emoji;
+          note.updatedAt = now;
+          note.alarmAt = alarmAt;
+          if (alarmAt) {
+            const alarmTime = new Date(alarmAt);
+            note.alarmDone = alarmTime <= new Date();
+          } else {
+            note.alarmDone = false;
+          }
+        }
+      } else {
+        const newNote = {
+          id: now,
+          title,
+          content,
+          emoji,
+          createdAt: now,
+          updatedAt: now,
+          pinned: false,
+          alarmAt,
+          alarmDone
+        };
+        notes.push(newNote);
+        noteIdInput.value = String(newNote.id);
+      }
+
+      saveNotes();
+      clearDraft();
+      draftInfo.textContent = "저장 완료! (다시 수정 시 자동저장됩니다)";
+      renderNotes();
+      startAlarmWatcher();
+    }
+
+    saveBtn.addEventListener("click", handleSave);
+
+    // Ctrl + S 로 저장
+    document.addEventListener("keydown", (e) => {
+      if (e.ctrlKey && (e.key === "s" || e.key === "S")) {
+        e.preventDefault();
+        handleSave();
+      }
+    });
+
+    newBtn.addEventListener("click", () => {
+      clearForm();
+      clearDraft();
+    });
+
+    // ===== 템플릿 버튼 =====
+    function applyTemplate(type) {
+      if (type === "plan") {
+        titleInput.value = "오늘의 계획";
+        contentInput.value =
+          "- 오늘 해야 할 일\n" +
+          "  1) \n  2) \n  3) \n\n" +
+          "- 꼭 지키고 싶은 한 가지 다짐:\n";
+      } else if (type === "workout") {
+        titleInput.value = "운동 기록";
+        contentInput.value =
+          "운동 날짜: " + new Date().toLocaleDateString() + "\n\n" +
+          "운동 내용\n" +
+          "- 준비운동:\n" +
+          "- 메인 운동:\n" +
+          "- 마무리 스트레칭:\n\n" +
+          "오늘 운동 소감:\n";
+      } else if (type === "thanks") {
+        titleInput.value = "감사 일기";
+        contentInput.value =
+          "오늘 감사한 일 3가지\n" +
+          "1)\n2)\n3)\n\n" +
+          "오늘 나에게 해주고 싶은 말:\n";
+      }
+      updateCountInfo();
+      scheduleDraftSave();
+    }
+
+    templateChips.forEach(chip => {
+      chip.addEventListener("click", () => {
+        const type = chip.dataset.template;
+        applyTemplate(type);
+      });
+    });
+
+    // ===== 검색 & 핀 필터 =====
+    searchInput.addEventListener("input", renderNotes);
+    pinnedFilterBtn.addEventListener("click", () => {
+      showPinnedOnly = !showPinnedOnly;
+      pinnedFilterBtn.classList.toggle("active", showPinnedOnly);
+      renderNotes();
+    });
+
+    // ===== 이모지 미리보기 =====
+    emojiSelect.addEventListener("change", () => {
+      emojiPreview.textContent = emojiSelect.value;
+      scheduleDraftSave();
+    });
+
+    // ===== 알람 기능 =====
+    function showAlarm(note) {
+      alert(`⏰ [알람] ${note.emoji || "💪"} ${note.title}\n\n${(note.content || "").slice(0, 120)}`);
+    }
+
+    function checkAlarms() {
+      const now = new Date();
+      let changed = false;
+      notes.forEach(n => {
+        if (!n.alarmAt || n.alarmDone) return;
+        const alarmTime = new Date(n.alarmAt);
+        if (Number.isNaN(alarmTime.getTime())) return;
+        if (now >= alarmTime) {
+          n.alarmDone = true;
+          changed = true;
+          showAlarm(n);
+        }
+      });
+      if (changed) {
+        saveNotes();
+        renderNotes();
+      }
+    }
+
+    function startAlarmWatcher() {
+      if (alarmTimer) clearInterval(alarmTimer);
+      alarmTimer = setInterval(checkAlarms, 15000);
+    }
+
+    // ===== 자동저장(임시저장) =====
+    function loadDraft() {
+      const raw = localStorage.getItem(DRAFT_KEY);
+      return raw ? JSON.parse(raw) : null;
+    }
+
+    function saveDraft(data) {
+      localStorage.setItem(DRAFT_KEY, JSON.stringify(data));
+    }
+
+    function clearDraft() {
+      localStorage.removeItem(DRAFT_KEY);
+    }
+
+    const DRAFT_DELAY = 800;
+
+    function scheduleDraftSave() {
+      if (draftTimer) clearTimeout(draftTimer);
+      draftInfo.textContent = "입력 중... 자동저장 준비 중";
+
+      draftTimer = setTimeout(() => {
+        const draft = {
+          id: noteIdInput.value ? Number(noteIdInput.value) : null,
+          title: titleInput.value,
+          content: contentInput.value,
+          emoji: emojiSelect.value,
+          alarmAt: alarmAtInput.value
+        };
+        saveDraft(draft);
+        draftInfo.textContent = "임시저장 완료";
+      }, DRAFT_DELAY);
+    }
+
+    [titleInput, contentInput, alarmAtInput].forEach(el =>
+      el.addEventListener("input", scheduleDraftSave)
+    );
+    emojiSelect.addEventListener("change", scheduleDraftSave);
+
+    function restoreDraftIfExists() {
+      const draft = loadDraft();
+      if (!draft) {
+        draftInfo.textContent = "자동저장 대기 중...";
+        return;
+      }
+      if (draft.id) {
+        const note = notes.find(n => n.id === draft.id);
+        if (note) {
+          noteIdInput.value = String(draft.id);
+        }
+      }
+      titleInput.value = draft.title || "";
+      contentInput.value = draft.content || "";
+      emojiSelect.value = draft.emoji || "🔥";
+      emojiPreview.textContent = emojiSelect.value;
+      alarmAtInput.value = draft.alarmAt || "";
+      draftInfo.textContent = "이전에 작성 중이던 메모가 복원되었습니다.";
+      updateCountInfo();
+    }
 
     // ===== 초기 실행 =====
-    loadTheme();
-    loadStyle();
+    (function init() {
+      loadTheme();
+      loadStyle();
+      loadNotes();
+      updateCountInfo();
+      renderNotes();
+      restoreDraftIfExists();
+      startAlarmWatcher();
+    })();
   </script>
 </body>
 </html>
